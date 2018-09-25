@@ -17,6 +17,8 @@
 # at the top of spec/spec_helper.rb
 
 # Set the environment to "test"
+require_relative './setup_test_database'
+ENV['ENVIRONMENT'] = 'test'
 ENV['RACK_ENV'] = 'test'
 
 # Bring in the contents of the `app.rb` file
@@ -27,11 +29,15 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 
+
 # Tell Capybara to talk to BookmarkManager
 Capybara.app = BookmarkManager
 
 
 RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
