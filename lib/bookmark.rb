@@ -21,7 +21,7 @@ class Bookmark
     else
       connection = PG.connect(dbname: 'bookmark_manager', :user => 'robbiecampbell')
     end
-      new_bookmark = connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}')")
+    new_bookmark = connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}')")
 
   end
 
